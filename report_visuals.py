@@ -6,7 +6,7 @@ from pyts.image import GramianAngularField
 from main import load_data
 from backtest.walk_forward import walk_forward
 from features.gaf import gaf_transform
-from models.model import get_model
+from models.xgb_model import build_model
 from config import WINDOW_SIZE
 
 
