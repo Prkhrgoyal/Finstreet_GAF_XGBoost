@@ -22,7 +22,10 @@ def main():
 
     print("Backtest Results")
     for k, v in results.items():
+    if isinstance(v, (int, float)):
         print(f"{k}: {v:.4f}")
+    else:
+        print(f"{k}: [array of length {len(v)}]")
 
 if __name__ == "__main__":
     main()
