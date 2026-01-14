@@ -58,4 +58,5 @@ def walk_forward(model, X, y, prices):
         "MaxDrawdown": mdd,
         "TotalReturn": total_return,
         "Trades": trades,
+        "Returns": rets
     }
