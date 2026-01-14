@@ -6,8 +6,8 @@ __pycache__/
 venv/
 
 # Secrets
-config.py
+Config.py
 
 # Data / models
-data/
+data/ircon.csv
 models/
