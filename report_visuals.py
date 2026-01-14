@@ -1,6 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from pyts.image import GramianAngularField
+import os
+os.makedirs("reports/figures", exist_ok=True)
+
+
 
 # ---- IMPORT FROM YOUR EXISTING CODE ----
 from main import load_data
@@ -20,7 +24,13 @@ def plot_equity_curve(rets):
     plt.xlabel("Time Steps")
     plt.ylabel("Normalized Equity")
     plt.grid(True)
+
+    plt.savefig("reports/figures/equity_curve.png", dpi=300, bbox_inches="tight")
+    plt.savefig("reports/figures/equity_curve.pdf", bbox_inches="tight")
+
     plt.show()
+    plt.close()
+
 
 
 def plot_drawdown(rets):
@@ -34,7 +44,13 @@ def plot_drawdown(rets):
     plt.xlabel("Time Steps")
     plt.ylabel("Drawdown")
     plt.grid(True)
+
+    plt.savefig("reports/figures/drawdown.png", dpi=300, bbox_inches="tight")
+    plt.savefig("reports/figures/drawdown.pdf", bbox_inches="tight")
+
     plt.show()
+    plt.close()
+
 
 
 def plot_trade_distribution(rets):
@@ -45,17 +61,20 @@ def plot_trade_distribution(rets):
     plt.xlabel("Return")
     plt.ylabel("Frequency")
     plt.grid(True)
+
+    plt.savefig("reports/figures/trade_distribution.png", dpi=300, bbox_inches="tight")
+    plt.savefig("reports/figures/trade_distribution.pdf", bbox_inches="tight")
+
     plt.show()
+    plt.close()
+
 
 
 def plot_gaf_example(close, index=100):
-    """
-    Plot a single GAF image for report illustration.
-    """
+    if index + WINDOW_SIZE >= len(close):
+        index = len(close) - WINDOW_SIZE - 1
 
     window = close[index : index + WINDOW_SIZE]
-
-    # normalize to [0, 1]
     window = (window - window.min()) / (window.max() - window.min())
 
     gaf = GramianAngularField(method="summation")
@@ -65,7 +84,13 @@ def plot_gaf_example(close, index=100):
     plt.imshow(gaf_image, cmap="rainbow", origin="lower")
     plt.title("Gramian Angular Field Representation")
     plt.colorbar()
+
+    plt.savefig("reports/figures/gaf_example.png", dpi=300, bbox_inches="tight")
+    plt.savefig("reports/figures/gaf_example.pdf", bbox_inches="tight")
+
     plt.show()
+    plt.close()
+
 
 
 # ---------------- MAIN DRIVER ----------------
@@ -94,7 +119,7 @@ def main():
     X = X[:-1]
     prices = prices[:-1]
 
-    model = get_model()
+    model = build_model()
 
     # ---- RUN BACKTEST ----
     results = walk_forward(model, X, y, prices)
