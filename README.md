@@ -68,23 +68,10 @@ venv\Scripts\activate           # Windows
 pip install -r requirements.txt
 
 How to Run the Project
-Step 1: Prepare Data
 
-Place your OHLC data inside the data/ folder
 
-Default example: data/ircon.csv
+Run the Pipeline
 
-Required column:
-
-close
-
-Step 2: Configure Parameters
-
-Edit config.py:
-
-WINDOW_SIZE = 24   # Example: 24 hourly candles
-
-Step 3: Run the Pipeline
 python main.py
 
 What Happens When You Run main.py
